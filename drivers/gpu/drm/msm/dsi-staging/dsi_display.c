@@ -19,6 +19,7 @@
 #include <linux/of_graph.h>
 #include <linux/of_gpio.h>
 #include <linux/err.h>
+#include <linux/kernel.h>
 
 #include "msm_drv.h"
 #include "sde_connector.h"
@@ -5154,8 +5155,8 @@ int dsi_display_dev_remove(struct platform_device *pdev)
 	}
 
 	display = platform_get_drvdata(pdev);
-	if (!display || !display->panel_node) {
-		DSI_ERR("invalid display\n");
+	if (!display || !display->panel_of) {
+		pr_err("invalid display\n");
 		return -EINVAL;
 	}
 
