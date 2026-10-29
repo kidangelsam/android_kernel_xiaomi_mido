@@ -31,8 +31,8 @@
 #include <drm/drm_mode.h>
 #include <drm/drm_plane_helper.h>
 #include <linux/sync_file.h>
-#include <linux/cpu_input_boost.h>
 
+#include <linux/devfreq_boost.h>
 #include "drm_crtc_internal.h"
 
 static void crtc_commit_free(struct kref *kref)
