@@ -253,7 +253,12 @@ static int modeset_init_intf(struct mdp5_kms *mdp5_kms, int intf_num)
 			break;
 		}
 
-		ret = msm_edp_modeset_init(priv->edp, dev, encoder);
+		#ifdef CONFIG_DRM_MSM_EDP
+        ret = msm_edp_modeset_init(priv->edp, dev, encoder);
+        if (ret) {
+                dev_err(dev->dev, "failed to init eDP: %d\n", ret);
+        }
+        #endif
 		break;
 	case INTF_HDMI:
 		if (!priv->hdmi)
@@ -272,7 +277,12 @@ static int modeset_init_intf(struct mdp5_kms *mdp5_kms, int intf_num)
 			break;
 		}
 
-		ret = msm_hdmi_modeset_init(priv->hdmi, dev, encoder);
+		#ifdef CONFIG_DRM_MSM_HDMI
+        ret = msm_hdmi_modeset_init(priv->hdmi, dev, encoder);
+        if (ret) {
+                dev_err(dev->dev, "failed to init HDMI: %d\n", ret);
+        }
+        #endif
 		break;
 	case INTF_DSI:
 	{
