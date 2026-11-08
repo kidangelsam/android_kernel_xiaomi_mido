@@ -14,6 +14,11 @@
 
 #define pr_fmt(fmt)	"msm-dsi-display:[%s] " fmt, __func__
 
+/* Compatibility fix: in case the header file doesn’t provide a DSI_ERR definition */
+#ifndef DSI_ERR
+#define DSI_ERR(fmt, ...) pr_err("[dsi_display] " fmt, ##__VA_ARGS__)
+#endif
+
 #include <linux/list.h>
 #include <linux/of.h>
 #include <linux/of_graph.h>
@@ -5154,7 +5159,7 @@ int dsi_display_dev_remove(struct platform_device *pdev)
 	}
 
 	display = platform_get_drvdata(pdev);
-	if (!display || !display->panel_node) {
+	if (!display || !display->panel_of) {
 		DSI_ERR("invalid display\n");
 		return -EINVAL;
 	}
