@@ -17,6 +17,23 @@
  */
 
 #include "mdp5_kms.h"
+#include <drm/drm_blend.h>
+
+/* Compatibility fix: if drm_blend.h doesn’t provide these definitions */
+#ifndef DRM_ROTATE_0
+#define DRM_ROTATE_0   BIT(0)
+#define DRM_ROTATE_90  BIT(1)
+#define DRM_ROTATE_180 BIT(2)
+#define DRM_ROTATE_270 BIT(3)
+#define DRM_ROTATE_MASK (DRM_ROTATE_0 | DRM_ROTATE_90 | \
+                         DRM_ROTATE_180 | DRM_ROTATE_270)
+#endif
+
+#ifndef DRM_REFLECT_X
+#define DRM_REFLECT_X  BIT(4)
+#define DRM_REFLECT_Y  BIT(5)
+#define DRM_REFLECT_MASK (DRM_REFLECT_X | DRM_REFLECT_Y)
+#endif
 
 struct mdp5_plane {
 	struct drm_plane base;
