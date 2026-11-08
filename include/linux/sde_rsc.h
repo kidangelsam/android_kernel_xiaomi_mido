@@ -192,7 +192,7 @@ int sde_rsc_client_state_update(struct sde_rsc_client *client,
  *
  * Return: true if the state update has completed.
  */
-int sde_rsc_client_get_vsync_refcount(
+static inline int sde_rsc_client_get_vsync_refcount(
 		struct sde_rsc_client *caller_client);
 
 /**
@@ -202,7 +202,7 @@ int sde_rsc_client_get_vsync_refcount(
  *
  * Return: true if the state update has completed.
  */
-int sde_rsc_client_reset_vsync_refcount(
+static inline int sde_rsc_client_reset_vsync_refcount(
 		struct sde_rsc_client *caller_client);
 
 /**
